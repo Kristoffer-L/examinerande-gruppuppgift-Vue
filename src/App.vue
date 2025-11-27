@@ -11,6 +11,7 @@ const Event = [
 </script>
 
 <template>
+  <div >
   <nav>
     <ul class="navUl">
       <li><a href="/tryit/html">Home</a></li>
@@ -22,6 +23,9 @@ const Event = [
   <div>
     <Slider :items="Event" />
   </div>
+<div class="bg-red-500 text-white p-4">
+  Tailwind works!
+</div>
 </template>
 
 <style scoped>
