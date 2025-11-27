@@ -1,7 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Slider from "./components/Slider.vue";
 
-<template class="mainContainer">
-  <h1>TryIt</h1>
+const Event = [
+  { title: "Skidor", desc: "Resa till Åre", image: "skidor.jpg" },
+  { title: "Semester", desc: "Resa till Grekland", image: "skidor.jpg" },
+  { title: "Konsert", desc: "Coldplay i Stockholm", image: "skidor.jpg" },
+  { title: "Skidor", desc: "Resa till Åre", image: "skidor.jpg" },
+  { title: "Semester", desc: "Resa till Grekland", image: "skidor.jpg" },
+];
+</script>
+
+<template>
   <nav>
     <ul class="navUl">
       <li><a href="/tryit/html">Home</a></li>
@@ -10,6 +19,9 @@
       <li><a href="/tryit/vue">Contact</a></li>
     </ul>
   </nav>
+  <div>
+    <Slider :items="Event" />
+  </div>
 </template>
 
 <style scoped>
