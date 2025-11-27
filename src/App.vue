@@ -1,30 +1,42 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
-<template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+<template class="mainContainer">
+  <h1>TryIt</h1>
+  <nav>
+    <ul class="navUl">
+      <li><a href="/tryit/html">Home</a></li>
+      <li><a href="/tryit/css">Adventures</a></li>
+      <li><a href="/tryit/js">About</a></li>
+      <li><a href="/tryit/vue">Contact</a></li>
+    </ul>
+  </nav>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.navUl {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.navUl li {
+  border: 1px solid black;
+  padding-inline: 10px;
+  padding-block: 5px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.navUl a {
+  text-decoration: none;
+  color: black;
+}
+.mainContainer {
+  height: 100%;
+  width: 100%;
+  background-color: lightgray;
+  padding: 20px;
 }
 </style>
