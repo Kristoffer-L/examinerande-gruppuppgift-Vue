@@ -6,6 +6,8 @@ import DefaultLayout from "../layouts/DefaultLayout.vue";
 // Pages
 import Home from "../pages/Home.vue";
 import Booking from "../pages/Booking.vue";
+import Basket from "../pages/Basket.vue";
+import Experience from "../pages/Experience.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,6 +18,8 @@ const router = createRouter({
       children: [
         { path: "", component: Home },
         { path: "booking", component: Booking },
+        { path: "basket", component: Basket },
+        { path: "experience", component: Experience },
       ],
     }
   ],
