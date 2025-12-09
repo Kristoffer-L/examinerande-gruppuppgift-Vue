@@ -5,6 +5,11 @@ interface EventItem {
   title: string;
   desc: string;
   image: string;
+  category: string;
+  participants: number;
+  startDate: string;
+  endDate: string;
+  age: string;
 }
 
 const props = defineProps<{
