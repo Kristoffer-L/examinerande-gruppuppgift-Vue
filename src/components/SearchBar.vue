@@ -1,29 +1,25 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { VueDatePicker } from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
+import { ref, computed } from 'vue';
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
-const destination = ref<string>("");
-const category = ref<string>("");
+const destination = ref<string>('');
+const category = ref<string>('');
 const participants = ref<number | null>(null);
-const ageCategory = ref<string>("");
+const ageCategory = ref<string>('');
 
 // Date range
 const selectedDateRange = ref<Date[] | null>(null);
 
 const handleDateChange = (newDates: Date[] | null): void => {
   selectedDateRange.value = newDates;
-  console.log("Date range selected:", newDates);
+  console.log('Date range selected:', newDates);
 };
 
 // Optional formatted outputs
-const startDate = computed(
-  () => selectedDateRange.value?.[0]?.toLocaleDateString() ?? "N/A"
-);
+const startDate = computed(() => selectedDateRange.value?.[0]?.toLocaleDateString() ?? 'N/A');
 
-const dueDate = computed(
-  () => selectedDateRange.value?.[1]?.toLocaleDateString() ?? "N/A"
-);
+const dueDate = computed(() => selectedDateRange.value?.[1]?.toLocaleDateString() ?? 'N/A');
 
 // Action when user clicks “Search”
 const search = () => {
@@ -35,14 +31,12 @@ const search = () => {
     dateRange: selectedDateRange.value,
   };
 
-  console.log("Search payload:", payload);
+  console.log('Search payload:', payload);
 };
 </script>
 
 <template>
-  <div
-    class="flex gap-2 justify-between m-auto px-8 py-2 w-[80%] border-2 border-black"
-  >
+  <div class="flex gap-2 justify-between m-auto px-8 py-2 w-[80%] border-2 border-black">
     <div class="flex flex-col">
       <label for="search-input">Destination</label>
       <input
@@ -55,11 +49,7 @@ const search = () => {
     </div>
     <div class="flex flex-col">
       <label for="category-input">Category</label>
-      <select
-        id="category-input"
-        v-model="category"
-        class="bg-[#313772] border rounded p-2"
-      >
+      <select id="category-input" v-model="category" class="bg-[#313772] rounded p-2">
         <option value="">Select category range</option>
         <option value="sport">sport</option>
         <option value="history">history</option>
@@ -89,20 +79,14 @@ const search = () => {
     </div>
     <div class="flex flex-col">
       <label for="Age-select">Age Category</label>
-      <select
-        id="Age-select"
-        v-model="ageCategory"
-        class="bg-[#313772] border rounded p-2"
-      >
+      <select id="Age-select" v-model="ageCategory" class="bg-[#313772] border rounded p-2">
         <option value="">Select age range</option>
         <option value="10-30">10 - 30</option>
         <option value="30-45">30 - 45</option>
         <option value="45-90">45 - 90</option>
       </select>
     </div>
-    <button class="px-8 py-3 my-auto rounded-lg bg-[#5593f0]" @click="search">
-      Sök
-    </button>
+    <button class="px-8 py-3 my-auto rounded-lg bg-[#5593f0]" @click="search">Sök</button>
   </div>
 
   <div v-if="startDate && dueDate" class="selected-dates-display">

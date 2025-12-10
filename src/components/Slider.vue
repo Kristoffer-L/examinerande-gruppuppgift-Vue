@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed } from 'vue';
+import { useCartStore } from '../stores/cart';
 
 interface EventItem {
   title: string;
@@ -10,13 +11,25 @@ interface EventItem {
   startDate: string;
   endDate: string;
   age: string;
+  price: number;
 }
 
 const props = defineProps<{
   items: EventItem[];
 }>();
 
+const cart = useCartStore();
 const currentIndex = ref<number>(0);
+
+const addCartItem = (item: any, index: any) => {
+  cart.addItem({
+    id: index,
+    title: item.title,
+    image: item.image,
+    participants: item.participants,
+    price: item.price,
+  });
+};
 
 // Always show 3 items
 const visibleItems = computed<EventItem[]>(() => {
@@ -40,7 +53,12 @@ function prev() {
 <template>
   <div class="slider">
     <button class="button" @click="prev"><</button>
-    <div v-for="(item, index) in visibleItems" :key="index" class="slider-item">
+    <div
+      v-for="(item, index) in visibleItems"
+      :key="index"
+      class="slider-item"
+      @click="addCartItem(item, index)"
+    >
       <img :src="item.image" :alt="item.title" class="img" />
       <h2 class="title">{{ item.title }}</h2>
     </div>
