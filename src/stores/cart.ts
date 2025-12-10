@@ -6,7 +6,9 @@ export const useCartStore = defineStore('cart', {
     items: [] as {
       id: number;
       title: string;
+      description: string;
       image: string;
+      category: string;
       participants: number;
       price: number;
     }[],
@@ -17,13 +19,7 @@ export const useCartStore = defineStore('cart', {
   },
 
   actions: {
-    addItem(item: {
-      id: number;
-      title: string;
-      image: string;
-      participants: number;
-      price: number;
-    }) {
+    addItem(item: any) {
       this.items.push(item);
     },
 

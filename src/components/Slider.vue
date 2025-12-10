@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useCartStore } from '../stores/cart';
 
 interface ExperienceItem {
+  id: number;
   title: string;
   description: string;
   image: string;
-  id: number;
   category: string;
-
   age: string;
   price: number;
 }
@@ -21,6 +21,7 @@ const emit = defineEmits<{
   (e: 'read-more', id: Number): void;
 }>();
 
+const cart = useCartStore();
 const currentIndex = ref<number>(0);
 
 const visibleItems = computed(() => {
@@ -46,6 +47,7 @@ function resolveImage(path: string) {
 // Emit functions
 function onBook(item: ExperienceItem) {
   emit('book', item.id);
+  cart.addItem(item);
 }
 function onReadMore(item: ExperienceItem) {
   emit('read-more', item.id);

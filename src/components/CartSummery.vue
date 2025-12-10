@@ -4,15 +4,19 @@ import { Minus } from 'lucide-vue-next';
 import { useCartStore } from '../stores/cart';
 
 const cart = useCartStore();
+
+function resolveImage(path: string) {
+  return new URL(`../assets/${path}`, import.meta.url).href;
+}
 </script>
 
 <template>
   <div v-for="(item, index) in cart.items" :key="index">
     <div class="flex">
-      <img :src="item.image" :alt="item.title" class="h-auto w-[50%] rounded-lg" />
+      <img :src="resolveImage(item.image)" :alt="item.title" class="h-auto w-[33%] rounded-lg" />
       <div
         @click="cart.removeItem(item.id)"
-        class="bg-black rounded-[28px] h-7 w-15 flex justify-center items-center m-auto gap-5"
+        class="bg-black rounded-[28px] h-7 w-15 flex justify-center items-center ml-auto my-auto gap-5"
       >
         <Minus class="cursor-pointer text-red-500">-</Minus>
       </div>

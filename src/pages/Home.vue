@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import ExperienceComponent from '../components/ExperienceComponent.vue';
-import { onMounted, ref } from 'vue';
+// import { onMounted, ref } from 'vue';
 import SearchBar from '../components/SearchBar.vue';
 import Slider from '../components/Slider.vue';
 import data from '../data/experiences.json';
 const experiences = data.experiences;
 document.title = 'Galactic Getaways - Home';
 
-const items = ref([]);
-
-onMounted(async () => {
-  const res = await fetch('/events.json');
-  items.value = await res.json();
-});
+// const items = ref([]);
+// onMounted(async () => {
+//   const res = await fetch('/events.json');
+//   items.value = await res.json();
+// });
 const categories = [...new Set(experiences.map((exp) => exp.category))];
 </script>
 
