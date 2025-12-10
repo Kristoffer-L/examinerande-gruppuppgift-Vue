@@ -6,7 +6,8 @@
       "description": "Relax in a geothermal spa on the planet’s scorched surface, protected by advanced thermal shielding.",
       "id": 1,
       "category": "Relaxation",
-      "age": "12"
+      "age": "12",
+      "price": 199
     },
     {
       "image": "mons-skiing.jpg",
@@ -14,7 +15,8 @@
       "description": "Descend the tallest volcano in the solar system on a thrilling low-gravity ski adventure.",
       "id": 2,
       "category": "Adventure",
-      "age": "16"
+      "age": "16",
+      "price": 345
     },
     {
       "image": "deep-sea-diving.png",
@@ -22,7 +24,8 @@
       "description": "Explore the icy moon’s mysterious underwater oceans filled with alien bioluminescent life.",
       "id": 3,
       "category": "Exploration",
-      "age": "16"
+      "age": "16",
+      "price": 249
     },
     {
       "image": "balloon-riding.png",
@@ -30,7 +33,8 @@
       "description": "Float safely above Jupiter’s breathtaking storms and witness auroras larger than Earth itself.",
       "id": 4,
       "category": "Sightseeing",
-      "age": "12"
+      "age": "12",
+      "price": 399
     },
     {
       "image": "crystal-cave.png",
@@ -38,7 +42,8 @@
       "description": "Journey through vast crystalline caves beneath Europa’s frozen crust, illuminated by internal glacial light.",
       "id": 5,
       "category": "Adventure",
-      "age": "12"
+      "age": "12",
+      "price": 599
     },
     {
       "image": "stargazing.png",
@@ -46,7 +51,8 @@
       "description": "Unwind at a serene observatory resort located on the Moon’s radio-silent far side, perfect for astronomy lovers.",
       "id": 6,
       "category": "Relaxation",
-      "age": "0"
+      "age": "0",
+      "price": 299
     }
   ]
 }

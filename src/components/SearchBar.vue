@@ -20,10 +20,6 @@ const handleDateChange = (newDates: Date[] | null): void => {
   console.log('Date range selected:', newDates);
 };
 
-const startDate = computed(() => selectedDateRange.value?.[0]?.toLocaleDateString() ?? 'N/A');
-
-const dueDate = computed(() => selectedDateRange.value?.[1]?.toLocaleDateString() ?? 'N/A');
-
 const search = () => {
   const payload = {
     category: category.value,
