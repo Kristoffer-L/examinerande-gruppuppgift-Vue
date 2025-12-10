@@ -1,34 +1,40 @@
 {
   "experiences": [
     {
-      "image": "",
+      "image": "venus-spa.png",
       "title": "Spa Day on Venus",
-      "description": "Relax in a geothermal spa on the planet\u2019s scorched surface, protected by advanced thermal shielding."
+      "description": "Relax in a geothermal spa on the planet\u2019s scorched surface, protected by advanced thermal shielding.",
+      "id": 1
     },
     {
-      "image": "",
+      "image": "mons-skiing.jpg",
       "title": "Skiing Down Olympus Mons",
-      "description": "Descend the tallest volcano in the solar system on a thrilling low-gravity ski adventure."
+      "description": "Descend the tallest volcano in the solar system on a thrilling low-gravity ski adventure.",
+      "id": 2
     },
     {
-      "image": "",
+      "image": "deep-sea-diving.png",
       "title": "Deep-Sea Dive on Enceladus",
-      "description": "Explore the icy moon\u2019s mysterious underwater oceans filled with alien bioluminescent life."
+      "description": "Explore the icy moon\u2019s mysterious underwater oceans filled with alien bioluminescent life.",
+      "id": 3
     },
     {
-      "image": "",
+      "image": "balloon-riding.png",
       "title": "Aurora Balloon Cruise Over Jupiter",
-      "description": "Float safely above Jupiter\u2019s breathtaking storms and witness auroras larger than Earth itself."
+      "description": "Float safely above Jupiter\u2019s breathtaking storms and witness auroras larger than Earth itself.",
+      "id": 4
     },
     {
-      "image": "",
+      "image": "crystal-cave.png",
       "title": "Crystal Cavern Expedition on Europa",
-      "description": "Journey through vast crystalline caves beneath Europa\u2019s frozen crust, illuminated by internal glacial light."
+      "description": "Journey through vast crystalline caves beneath Europa\u2019s frozen crust, illuminated by internal glacial light.",
+      "id": 5
     },
     {
-      "image": "",
+      "image": "stargazing.png",
       "title": "Stargazer Retreat on the Lunar Far Side",
-      "description": "Unwind at a serene observatory resort located on the Moon\u2019s radio\u2011silent far side, perfect for astronomy lovers."
+      "description": "Unwind at a serene observatory resort located on the Moon\u2019s radio\u2011silent far side, perfect for astronomy lovers.",
+      "id": 6
     }
   ]
 }

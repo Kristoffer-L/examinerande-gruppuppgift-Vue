@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import ExperienceComponent from '../components/ExperienceComponent.vue';
-document.title = 'Simple Page | My App';
+import Slider from '../components/Slider.vue';
+document.title = 'Galactic Getaways - Home';
+
+import data from '../data/experiences.json';
+const experiences = data.experiences;
 </script>
 
 <template>
   <div class="min-h-screen p-8">
-    <h1 class="text-2xl font-bold mb-4">Simple Page</h1>
-    <p>This is a light scaffold for quick pages.</p>
-    <ExperienceComponent label="Submit" />
+    <!-- <ExperienceComponent :image="exp.image" :title="exp.title" :description="exp.description"
+        @click="() => alert(`You clicked on ${exp.title}`)" /> -->
+    <Slider :items="experiences" />
   </div>
 </template>
