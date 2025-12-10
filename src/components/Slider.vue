@@ -1,42 +1,32 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useCartStore } from '../stores/cart';
 
-interface EventItem {
+interface ExperienceItem {
   title: string;
-  desc: string;
+  description: string;
   image: string;
+  id: number;
   category: string;
-  participants: number;
-  startDate: string;
-  endDate: string;
+
   age: string;
   price: number;
 }
 
 const props = defineProps<{
-  items: EventItem[];
+  items: ExperienceItem[];
 }>();
 
-const cart = useCartStore();
+const emit = defineEmits<{
+  (e: 'book', id: Number): void;
+  (e: 'read-more', id: Number): void;
+}>();
+
 const currentIndex = ref<number>(0);
 
-const addCartItem = (item: any, index: any) => {
-  cart.addItem({
-    id: index,
-    title: item.title,
-    image: item.image,
-    participants: item.participants,
-    price: item.price,
-  });
-};
-
-// Always show 3 items
-const visibleItems = computed<EventItem[]>(() => {
+const visibleItems = computed(() => {
   return props.items.slice(currentIndex.value, currentIndex.value + 3);
 });
 
-// button actions
 function next() {
   if (currentIndex.value < props.items.length - 3) {
     currentIndex.value++;
@@ -48,21 +38,38 @@ function prev() {
     currentIndex.value--;
   }
 }
+
+function resolveImage(path: string) {
+  return new URL(`../assets/${path}`, import.meta.url).href;
+}
+
+// Emit functions
+function onBook(item: ExperienceItem) {
+  emit('book', item.id);
+}
+function onReadMore(item: ExperienceItem) {
+  emit('read-more', item.id);
+}
 </script>
 
 <template>
   <div class="slider">
-    <button class="button" @click="prev"><</button>
-    <div
-      v-for="(item, index) in visibleItems"
-      :key="index"
-      class="slider-item"
-      @click="addCartItem(item, index)"
-    >
-      <img :src="item.image" :alt="item.title" class="img" />
-      <h2 class="title">{{ item.title }}</h2>
+    <button class="button" @click="prev">‹</button>
+
+    <div v-for="item in visibleItems" :key="item.title" class="slider-item">
+      <img :src="resolveImage(item.image)" :alt="item.title" class="img" />
+
+      <div class="overlay">
+        <h2 class="title">{{ item.title }}</h2>
+
+        <div class="buttons">
+          <button class="action-btn" @click="onBook(item)">Book</button>
+          <button class="action-btn secondary" @click="onReadMore(item)">Read More</button>
+        </div>
+      </div>
     </div>
-    <button class="button" @click="next">></button>
+
+    <button class="button" @click="next">›</button>
   </div>
 </template>
 
@@ -70,7 +77,10 @@ function prev() {
 .slider {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
 }
+
 .slider-item {
   height: 300px;
   width: 25%;
@@ -80,16 +90,6 @@ function prev() {
   overflow: hidden;
 }
 
-.button {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  align-self: center;
-}
-.button:hover {
-  background-color: #eee;
-  cursor: pointer;
-}
 .img {
   width: 100%;
   height: 100%;
@@ -97,10 +97,55 @@ function prev() {
   position: absolute;
 }
 
-.title {
+.overlay {
   position: relative;
+  z-index: 2;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title {
   color: white;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 2px 2px 4px #000;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  user-select: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  background: #333;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-size: large;
+}
+.action-btn:hover {
+  background: #eee;
+}
+
+.action-btn.secondary {
+  background: 333;
+}
+.button {
+  background: none;
+  border: none;
+  font-size: 5rem;
+  cursor: pointer;
+  color: #333;
+}
+.button:hover {
+  color: #fff;
 }
 </style>
