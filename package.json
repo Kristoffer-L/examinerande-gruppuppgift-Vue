@@ -14,6 +14,7 @@
     "*.{js,ts,jsx,tsx,vue,json,css,scss,md}": "prettier --write"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^12.0.5",
     "vue": "^3.5.24",
     "vue-router": "^4.6.3"
   },

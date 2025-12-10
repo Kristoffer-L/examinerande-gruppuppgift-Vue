@@ -6,6 +6,9 @@ interface ExperienceItem {
   description: string;
   image: string;
   id: number;
+  category: string;
+
+  age: string;
 }
 
 const props = defineProps<{

@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import ExperienceComponent from '../components/ExperienceComponent.vue';
 import Slider from '../components/Slider.vue';
-document.title = 'Galactic Getaways - Home';
-
+import SearchBar from '../components/SearchBar.vue';
 import data from '../data/experiences.json';
 const experiences = data.experiences;
+document.title = 'Galactic Getaways - Home';
+
+const categories = [...new Set(experiences.map((exp) => exp.category))];
 </script>
 
 <template>
   <div class="min-h-screen p-8">
-    <!-- <ExperienceComponent :image="exp.image" :title="exp.title" :description="exp.description"
-        @click="() => alert(`You clicked on ${exp.title}`)" /> -->
+    <SearchBar :categories="categories" />
     <Slider :items="experiences" />
   </div>
 </template>

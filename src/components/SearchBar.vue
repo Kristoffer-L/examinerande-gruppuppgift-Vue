@@ -1,64 +1,119 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { VueDatePicker } from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
+import { ref, computed } from 'vue';
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
-// It's either null initially, or an array containing two Date objects.
+const destination = ref<string>('');
+const category = ref<string>('');
+const participants = ref<number | null>(null);
+const ageCategory = ref<string>('');
+
+// Date range
 const selectedDateRange = ref<Date[] | null>(null);
 
-// Define the type for the function argument when the date changes
+const props = defineProps<{
+  categories: String[];
+}>();
+
 const handleDateChange = (newDates: Date[] | null): void => {
-  console.log("Date range selected:", newDates);
+  selectedDateRange.value = newDates;
+  console.log('Date range selected:', newDates);
 };
 
-// Helper computed properties to display formatted dates if needed
-const startDate = computed((): string => {
-  if (selectedDateRange.value && selectedDateRange.value[0]) {
-    return selectedDateRange.value[0].toLocaleDateString();
-  }
-  return "N/A";
-});
+const startDate = computed(() => selectedDateRange.value?.[0]?.toLocaleDateString() ?? 'N/A');
 
-const dueDate = computed((): string => {
-  if (selectedDateRange.value && selectedDateRange.value[1]) {
-    return selectedDateRange.value[1].toLocaleDateString();
-  }
-  return "N/A";
-});
+const dueDate = computed(() => selectedDateRange.value?.[1]?.toLocaleDateString() ?? 'N/A');
+
+const search = () => {
+  const payload = {
+    category: category.value,
+    participants: participants.value,
+    ageCategory: ageCategory.value,
+    dateRange: selectedDateRange.value,
+  };
+
+  console.log('Search payload:', payload);
+};
 </script>
 
 <template>
-  <div class="flex m-auto px-4 py-2 w-[80%] border-2 border-black">
-    <div class="flex flex-col">
-      <label for="search-input">äventyr</label>
-      <input id="search-input" type="text" placeholder="Äventyr..." />
+  <div class="filter-container">
+    <div class="field">
+      <label for="category-input">Category</label>
+      <select id="category-input" v-model="category" class="input">
+        <option value="">Select Category</option>
+        <option v-for="cat in categories" :value="cat">{{ cat }}</option>
+      </select>
     </div>
-    <div class="flex flex-col">
-      <label for="category-input">kategori</label>
-      <input id="category-input" type="text" placeholder="Kategori..." />
-    </div>
-    <div class="">
-      <label for="date-range-picker">Datum</label>
+
+    <div class="field">
+      <label for="date-range-picker">Date</label>
       <VueDatePicker
         id="date-range-picker"
-        class="w-full"
         v-model="selectedDateRange"
         range
         :enable-time-picker="false"
+        class="datepicker"
         @update:model-value="handleDateChange"
       />
     </div>
-    <button class="px-4 py-2 bg-b">Sök</button>
-  </div>
 
-  <div v-if="startDate && dueDate" class="selected-dates-display">
-    <p>
-      Start Date: <strong>{{ startDate }}</strong>
-    </p>
-    <p>
-      Due Date: <strong>{{ dueDate }}</strong>
-    </p>
+    <div class="field">
+      <label for="Age-select">Age Category</label>
+      <select id="Age-select" v-model="ageCategory" class="input">
+        <option value="">All Ages</option>
+        <option value="12">12+</option>
+        <option value="16">16+</option>
+      </select>
+    </div>
+
+    <button class="search-button" @click="search">Search</button>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.filter-container {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  padding: 0.5rem 2rem;
+  width: 80%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  background-color: #313772;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px;
+  color: white;
+}
+
+.datepicker {
+  width: 100%;
+  height: 80%;
+  font-size: 0.875rem;
+  --dp-background-color: #313772;
+  --dp-text-color: #ffffff;
+  border-radius: 8px;
+}
+
+.search-button {
+  padding: 12px 32px;
+  margin: auto 0;
+  background-color: #5593f0;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #6aa1f3;
+}
+</style>
