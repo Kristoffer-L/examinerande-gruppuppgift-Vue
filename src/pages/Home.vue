@@ -7,11 +7,6 @@ import data from '../data/experiences.json';
 const experiences = data.experiences;
 document.title = 'Galactic Getaways - Home';
 
-// const items = ref([]);
-// onMounted(async () => {
-//   const res = await fetch('/events.json');
-//   items.value = await res.json();
-// });
 const categories = [...new Set(experiences.map((exp) => exp.category))];
 </script>
 

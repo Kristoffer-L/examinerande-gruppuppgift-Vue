@@ -66,7 +66,9 @@ function onReadMore(item: ExperienceItem) {
 
         <div class="buttons">
           <button class="action-btn" @click="onBook(item)">Book</button>
-          <button class="action-btn secondary" @click="onReadMore(item)">Read More</button>
+          <router-link :to="`/experience/${item.id}`"
+            ><button class="action-btn secondary">Read More</button></router-link
+          >
         </div>
       </div>
     </div>

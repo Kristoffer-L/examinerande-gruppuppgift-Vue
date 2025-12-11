@@ -3,7 +3,10 @@
     {
       "image": "venus-spa.png",
       "title": "Spa Day on Venus",
-      "description": "Relax in a geothermal spa on the planet’s scorched surface, protected by advanced thermal shielding.",
+      "description": {
+        "type": "markdown",
+        "content": "### Welcome to the Venusian Spa\n\nRelax in our state-of-the-art geothermal baths, designed to keep you comfortable on the planet’s scorched surface. Enjoy the unique experience of soaking in thermal waters enhanced by advanced Venusian technology.\n\n#### What’s Included\n- Heat treatments tailored to your needs\n- Anti-gravity pools for a floating sensation\n- Venusian mud wraps that rejuvenate the skin\n- Relaxation lounges with panoramic views\n\nCome unwind and let the alien landscape inspire serenity."
+      },
       "id": 1,
       "category": "Relaxation",
       "age": "12",
@@ -12,7 +15,10 @@
     {
       "image": "mons-skiing.jpg",
       "title": "Skiing Down Olympus Mons",
-      "description": "Descend the tallest volcano in the solar system on a thrilling low-gravity ski adventure.",
+      "description": {
+        "type": "markdown",
+        "content": "### Conquer Olympus Mons\n\nDescend the tallest volcano in the solar system on an extraordinary low-gravity ski adventure. Glide across miles of powder-soft regolith with sweeping views of Mars’s horizon stretching endlessly beneath the pink sky.\n\n#### Adventure Highlights\n- Experience weightless turns on the slopes\n- Enjoy panoramic vistas of Martian landscapes\n- Guided runs with safety measures in place\n- Suitable for thrill-seekers aged 16 and up\n\nFeel the rush of adrenaline while marveling at one of the most awe-inspiring natural wonders in the galaxy."
+      },
       "id": 2,
       "category": "Adventure",
       "age": "16",
@@ -21,7 +27,10 @@
     {
       "image": "deep-sea-diving.png",
       "title": "Deep-Sea Dive on Enceladus",
-      "description": "Explore the icy moon’s mysterious underwater oceans filled with alien bioluminescent life.",
+      "description": {
+        "type": "markdown",
+        "content": "### Explore Enceladus’ Hidden Oceans\n\nJourney beneath the icy crust of Enceladus and explore vast subglacial oceans illuminated by shimmering alien bioluminescent life. Navigate through crystal-blue caverns, witness drifting schools of luminescent organisms, and float weightlessly in a world untouched by the sun.\n\n#### Expedition Includes\n- Guided dives with expert instructors\n- Observation of rare bioluminescent species\n- High-tech underwater suits for comfort and safety\n- Immersive scientific commentary\n\nA once-in-a-lifetime adventure into one of the galaxy’s most mysterious ecosystems."
+      },
       "id": 3,
       "category": "Exploration",
       "age": "16",
@@ -30,7 +39,10 @@
     {
       "image": "balloon-riding.png",
       "title": "Aurora Balloon Cruise Over Jupiter",
-      "description": "Float safely above Jupiter’s breathtaking storms and witness auroras larger than Earth itself.",
+      "description": {
+        "type": "markdown",
+        "content": "### Drift Above Jupiter\n\nFloat high above Jupiter’s colossal bands and roiling storms aboard a reinforced luxury sky-balloon. Marvel at auroras larger than entire continents as they ripple across the planet’s upper atmosphere.\n\n#### Experience Highlights\n- Silent glide over turbulent cloud bands\n- Expert guides narrate the science and beauty\n- Capture stunning planetary vistas\n- Suitable for ages 12 and above\n\nAn unforgettable journey combining serenity, spectacle, and cosmic wonder."
+      },
       "id": 4,
       "category": "Sightseeing",
       "age": "12",
@@ -39,7 +51,10 @@
     {
       "image": "crystal-cave.png",
       "title": "Crystal Cavern Expedition on Europa",
-      "description": "Journey through vast crystalline caves beneath Europa’s frozen crust, illuminated by internal glacial light.",
+      "description": {
+        "type": "markdown",
+        "content": "### Venture into Europa’s Crystal Caves\n\nExplore glittering subterranean caverns beneath Europa’s frozen crust, where towering ice formations refract alien light into dazzling patterns. Traverse tunnels stretching for miles in a guided expedition designed for thrill-seekers and explorers.\n\n#### Highlights\n- Witness rare crystalline structures\n- Adventure through icy passageways\n- Safety-guided exploration\n- Suitable for ages 12 and above\n\nDiscover the beauty and mystery hidden beneath the moon’s frozen surface."
+      },
       "id": 5,
       "category": "Adventure",
       "age": "12",
@@ -48,7 +63,10 @@
     {
       "image": "stargazing.png",
       "title": "Stargazer Retreat on the Lunar Far Side",
-      "description": "Unwind at a serene observatory resort located on the Moon’s radio-silent far side, perfect for astronomy lovers.",
+      "description": {
+        "type": "markdown",
+        "content": "### Cosmic Retreat on the Moon\n\nUnwind at a secluded observatory resort on the Moon’s radio-silent far side, where the galaxy reveals itself in unparalleled clarity. Enjoy nightly stargazing sessions with world-class telescopes, serene crater walks under the Earthless sky, and peaceful lodgings carved into the lunar bedrock.\n\n#### Retreat Highlights\n- Telescope-guided stargazing sessions\n- Quiet lunar crater exploration\n- Comfortable, immersive accommodations\n- Ideal for astronomy lovers of all ages\n\nA serene escape to reconnect with the universe and your inner explorer."
+      },
       "id": 6,
       "category": "Relaxation",
       "age": "0",
