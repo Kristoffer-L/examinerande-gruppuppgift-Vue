@@ -17,7 +17,7 @@ const router = createRouter({
       component: DefaultLayout,
       children: [
         { path: '', component: Home },
-        { path: 'booking', component: Booking },
+        { path: '/booking/:id', component: Booking, props: true },
         { path: 'basket', component: Basket },
         { path: '/experience/:id', component: Experience, props: true },
       ],
