@@ -1,7 +1,5 @@
 <script setup lang="ts">
-document.title = 'Booking Page';
-
-import { computed, h, ref, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import data from '../data/experiences.json';
 import { resolveImage } from '../utils/resolveImage';
 import { VueDatePicker } from '@vuepic/vue-datepicker';
@@ -19,6 +17,10 @@ const experienceId = Number(props.id);
 
 const experience = computed(() => experiences.find((exp) => exp.id === experienceId));
 
+const selectedAddons = ref<Set<string>>(new Set());
+
+document.title = (experience.value?.title || 'Experience') + ' - Galactic Getaways';
+
 const selectedDateRange = ref<Date[] | null>(null);
 const participants = ref<Record<number, number>>({});
 
@@ -26,6 +28,37 @@ const handleDateChange = (newDates: Date[] | null): void => {
   selectedDateRange.value = newDates;
   console.log('Date range selected:', newDates);
 };
+
+function onAddonChange(event: Event, addonId: string) {
+  const input = event.target as HTMLInputElement;
+
+  if (input.checked) {
+    selectedAddons.value.add(addonId);
+  } else {
+    selectedAddons.value.delete(addonId);
+  }
+}
+
+function onSubmit() {
+  const pricing = experience.value?.pricing ?? [];
+  const addons = experience.value?.addons ?? [];
+
+  const participantsTotal = pricing.reduce((sum, tier, index) => {
+    const count = participants.value[index] ?? 0;
+    return sum + count * tier.price;
+  }, 0);
+
+  const addonsTotal = addons.reduce((sum, addon) => {
+    return selectedAddons.value.has(addon.id) ? sum + addon.price : sum;
+  }, 0);
+
+  const total = participantsTotal + addonsTotal;
+
+  console.log({
+    dateRange: selectedDateRange.value,
+    total,
+  });
+}
 
 watchEffect(() => {
   const pricing = experience.value?.pricing;
@@ -41,7 +74,7 @@ watchEffect(() => {
   <div class="min-h-screen p-8 grid grid-cols-2 gap-10 justify-items-center grid-cols-[2fr,1fr]">
     <div class="w-full">
       <h1 class="text-2xl font-bold mb-4">{{ experience?.title }}</h1>
-      <form class="flex flex-col gap-4">
+      <form class="flex flex-col gap-4" @submit.prevent="onSubmit">
         <VueDatePicker
           id="date-range-picker"
           v-model="selectedDateRange"
@@ -70,12 +103,18 @@ watchEffect(() => {
         <div
           v-for="(addon, id) in experience?.addons"
           :key="id"
-          class="grid grid-cols-4 items-center grid-cols-[1fr,1fr,1fr,1fr] gap-4 border-b pb-4"
+          class="grid grid-cols-4 items-center grid-cols-[1fr,3fr,1fr,1fr] gap-4 border-b pb-4"
         >
           <p class="font-semibold">{{ addon.name }}</p>
           <p class="italic text-sm">{{ addon.description }}</p>
           <p>{{ addon.price }} ESC</p>
-          <input type="checkbox" :id="`addon-${id}`" class="w-4 h-4" />
+          <input
+            type="checkbox"
+            :id="`addon-${addon.id}`"
+            :checked="selectedAddons.has(addon.id)"
+            @change="onAddonChange($event, addon.id)"
+            class="w-4 h-4"
+          />
         </div>
         <button
           type="submit"
@@ -97,3 +136,15 @@ watchEffect(() => {
     />
   </div>
 </template>
+
+<style scoped>
+.datepicker {
+  width: 100%;
+  height: 80%;
+
+  font-size: 0.875rem;
+  --dp-background-color: #313772;
+  --dp-text-color: #ffffff;
+  border-radius: 8px;
+}
+</style>

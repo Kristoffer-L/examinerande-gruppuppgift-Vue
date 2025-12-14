@@ -15,6 +15,8 @@ const experienceId = Number(props.id);
 
 const experience = computed(() => experiences.find((exp) => exp.id === experienceId));
 
+document.title = (experience.value?.title || 'Experience') + ' - Galactic Getaways';
+
 const renderedDescription = computed(() => {
   const exp = experience.value;
   if (!exp || !exp.description) return '';
