@@ -6,6 +6,9 @@ import { VueDatePicker } from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import FormInput from '../components/FormInput.vue';
 import { Route } from 'lucide-vue-next';
+import { useCartStore } from '../stores/cart';
+
+const cart = useCartStore();
 
 const props = defineProps<{
   id: string | number;
@@ -26,7 +29,6 @@ const participants = ref<Record<number, number>>({});
 
 const handleDateChange = (newDates: Date[] | null): void => {
   selectedDateRange.value = newDates;
-  console.log('Date range selected:', newDates);
 };
 
 function onAddonChange(event: Event, addonId: string) {
@@ -55,8 +57,20 @@ function onSubmit() {
   const total = participantsTotal + addonsTotal;
 
   console.log({
+    experienceId: experience.value?.id,
+    experienceTitle: experience.value?.title,
     dateRange: selectedDateRange.value,
+    participants: participants.value,
+    addons: Array.from(selectedAddons.value),
     total,
+  });
+
+  cart.addItem({
+    id: experience.value?.id ?? 0,
+    title: experience.value?.title ?? '',
+    image: experience.value?.image ?? '',
+    participants: Object.values(participants.value).reduce((a, b) => a + b, 0),
+    price: total,
   });
 }
 

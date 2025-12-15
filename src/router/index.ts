@@ -17,9 +17,35 @@ const router = createRouter({
       component: DefaultLayout,
       children: [
         { path: '', component: Home },
-        { path: '/booking/:id', component: Booking, props: true },
+        {
+          path: 'booking',
+          redirect: '/',
+        },
+        {
+          path: 'booking/:id',
+          component: Booking,
+          props: true,
+          beforeEnter: (to) => {
+            const id = Number(to.params.id);
+            if (Number.isNaN(id)) return '/';
+            return true;
+          },
+        },
         { path: 'basket', component: Basket },
-        { path: '/experience/:id', component: Experience, props: true },
+        {
+          path: 'experience',
+          redirect: '/',
+        },
+        {
+          path: 'experience/:id',
+          component: Experience,
+          props: true,
+          beforeEnter: (to) => {
+            const id = Number(to.params.id);
+            if (Number.isNaN(id)) return '/';
+            return true;
+          },
+        },
       ],
     },
   ],

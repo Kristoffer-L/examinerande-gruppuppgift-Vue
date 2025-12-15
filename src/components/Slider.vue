@@ -29,7 +29,6 @@ const emit = defineEmits<{
   (e: 'read-more', id: Number): void;
 }>();
 
-const cart = useCartStore();
 const currentIndex = ref<number>(0);
 
 const visibleItems = computed(() => {
@@ -50,7 +49,6 @@ function prev() {
 
 function onBook(item: ExperienceItem) {
   emit('book', item.id);
-  cart.addItem(item);
 }
 function onReadMore(item: ExperienceItem) {
   emit('read-more', item.id);

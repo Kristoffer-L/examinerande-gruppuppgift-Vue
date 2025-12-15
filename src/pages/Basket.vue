@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import CartSummery from '../components/CartSummery.vue';
+import CartSummary from '../components/CartSummary.vue';
 document.title = 'Simple Page | My App';
 
 // Refs for each input
@@ -73,8 +73,8 @@ const submitForm = () => {
       </div>
     </div>
     <div class="border-4 border-black w-[500px] px-4 py-2">
-      <h2>Summery</h2>
-      <CartSummery />
+      <h2>Summary</h2>
+      <CartSummary />
       <div class="flex justify-center">
         <button
           @click="submitForm"
