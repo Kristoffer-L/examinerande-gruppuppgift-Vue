@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CartSummery from '../components/CartSummery.vue';
+import ConfirmModal from '../components/ConfirmModal.vue';
 document.title = 'Simple Page | My App';
 
 // Refs for each input
@@ -10,6 +11,12 @@ const lastName = ref('');
 const city = ref('');
 const postalCode = ref('');
 
+const showModal = ref(false);
+
+function openModal() {
+  showModal.value = true;
+}
+
 // Example submit handler
 const submitForm = () => {
   console.log('Email:', email.value);
@@ -17,6 +24,7 @@ const submitForm = () => {
   console.log('Last name:', lastName.value);
   console.log('City:', city.value);
   console.log('Postal code:', postalCode.value);
+  openModal();
 };
 </script>
 
@@ -82,6 +90,7 @@ const submitForm = () => {
         >
           Submit
         </button>
+        <ConfirmModal v-model="showModal" />
       </div>
     </div>
   </div>

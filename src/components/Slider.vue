@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useCartStore } from '../stores/cart';
 
 interface ExperienceItem {
@@ -27,6 +27,14 @@ const currentIndex = ref<number>(0);
 const visibleItems = computed(() => {
   return props.items.slice(currentIndex.value, currentIndex.value + 3);
 });
+
+// Reset index if items change
+watch(
+  () => props.items,
+  () => {
+    currentIndex.value = 0;
+  },
+);
 
 function next() {
   if (currentIndex.value < props.items.length - 3) {

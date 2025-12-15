@@ -7,28 +7,56 @@ const destination = ref<string>('');
 const category = ref<string>('');
 const participants = ref<number | null>(null);
 const ageCategory = ref<string>('');
-
-// Date range
 const selectedDateRange = ref<Date[] | null>(null);
 
 const props = defineProps<{
-  categories: String[];
+  categories: string[];
+  events: {
+    id: number;
+    category: string;
+    participants: number;
+    ageCategory: number;
+    date: string; // ISO string
+  }[];
 }>();
+
+const emit = defineEmits<{
+  (e: 'filtered', value: typeof filteredExperiences.value): void;
+}>();
+
+const filteredExperiences = ref<typeof props.events>([]);
 
 const handleDateChange = (newDates: Date[] | null): void => {
   selectedDateRange.value = newDates;
-  console.log('Date range selected:', newDates);
 };
 
 const search = () => {
   const payload = {
     category: category.value,
-    participants: participants.value,
-    ageCategory: ageCategory.value,
-    dateRange: selectedDateRange.value,
+    ageCategory: ageCategory.value, // string like "12" or "16"
+    priceMin: null, // optional, if you want price filtering
+    priceMax: null,
   };
 
-  console.log('Search payload:', payload);
+  filteredExperiences.value = props.events.filter((exp) => {
+    // Convert string age to number
+    const expAgeNumber = Number(exp.age); // "12" -> 12
+
+    // CATEGORY filter
+    if (payload.category && exp.category !== payload.category) {
+      return false;
+    }
+
+    // AGE filter
+    if (payload.ageCategory && expAgeNumber < Number(payload.ageCategory)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  // Emit the filtered results to parent
+  emit('filtered', filteredExperiences.value);
 };
 </script>
 

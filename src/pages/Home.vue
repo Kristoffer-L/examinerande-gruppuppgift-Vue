@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import ExperienceComponent from '../components/ExperienceComponent.vue';
 // import { onMounted, ref } from 'vue';
 import SearchBar from '../components/SearchBar.vue';
@@ -8,11 +9,19 @@ const experiences = data.experiences;
 document.title = 'Galactic Getaways - Home';
 
 const categories = [...new Set(experiences.map((exp) => exp.category))];
+
+const allExperiences = ref(experiences);
+const filteredExperiences = ref(experiences);
 </script>
 
 <template>
   <div class="min-h-screen p-8">
-    <SearchBar :categories="categories" />
-    <Slider :items="experiences" />
+    <SearchBar
+      :categories="categories"
+      :events="allExperiences"
+      @filtered="filteredExperiences = $event"
+    />
+
+    <Slider :items="filteredExperiences" />
   </div>
 </template>
