@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { resolveImage } from '../utils/resolveImage';
+
 interface Props {
   image: string;
   title: string;
@@ -9,15 +11,11 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   (e: 'click'): void;
 }>();
-
-function getImageUrl(name: string) {
-  return new URL(`../assets/${name}`, import.meta.url).href;
-}
 </script>
 
 <template>
   <div class="experience-card">
-    <img :src="getImageUrl(image)" class="w-full h-auto" />
+    <img :src="resolveImage(image)" class="w-full h-auto" />
     <div>
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
