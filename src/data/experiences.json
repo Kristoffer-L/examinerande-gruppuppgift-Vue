@@ -11,15 +11,15 @@
       "category": "Relaxation",
       "pricing": [
         {
-          "label": "Teen",
-          "ageRange": "12–17",
+          "label": "Student",
+          "ageRange": "12–19",
           "minAge": 12,
           "maxAge": 17,
           "price": 149
         },
         {
           "label": "Adult",
-          "ageRange": "18–64",
+          "ageRange": "20–64",
           "minAge": 18,
           "maxAge": 64,
           "price": 199
@@ -64,15 +64,15 @@
       "pricing": [
         {
           "label": "Student",
-          "ageRange": "12–20",
+          "ageRange": "12–19",
           "minAge": 12,
-          "maxAge": 17,
+          "maxAge": 19,
           "price": 295
         },
         {
           "label": "Adult",
-          "ageRange": "21–64",
-          "minAge": 21,
+          "ageRange": "20–64",
+          "minAge": 20,
           "maxAge": 64,
           "price": 345
         },
@@ -167,16 +167,16 @@
       "category": "Sightseeing",
       "pricing": [
         {
-          "label": "Teen",
-          "ageRange": "12–17",
+          "label": "Student",
+          "ageRange": "12–19",
           "minAge": 12,
-          "maxAge": 17,
+          "maxAge": 19,
           "price": 299
         },
         {
           "label": "Adult",
-          "ageRange": "18–64",
-          "minAge": 18,
+          "ageRange": "20–64",
+          "minAge": 20,
           "maxAge": 64,
           "price": 399
         },
@@ -297,27 +297,27 @@
           "minAge": 65,
           "price": 269
         }
+      ],
+      "addons": [
+        {
+          "id": "orbital-telescope-guide",
+          "name": "Orbital Telescope Guide",
+          "description": "Join a lunar astronomer to explore the galaxy through enhanced orbital telescopes.",
+          "price": 40
+        },
+        {
+          "id": "zero-g-stargazing-dome",
+          "name": "Zero-G Stargazing Dome",
+          "description": "Float inside a transparent zero-gravity dome while gazing at the stars in unparalleled clarity.",
+          "price": 35
+        },
+        {
+          "id": "lunar-astro-photography",
+          "name": "Lunar Astro Photography",
+          "description": "Capture the stars, planets, and lunar surroundings with professional astro-imaging tools.",
+          "price": 30
+        }
       ]
-    }
-  ],
-  "addons": [
-    {
-      "id": "orbital-telescope-guide",
-      "name": "Orbital Telescope Guide",
-      "description": "Join a lunar astronomer to explore the galaxy through enhanced orbital telescopes.",
-      "price": 40
-    },
-    {
-      "id": "zero-g-stargazing-dome",
-      "name": "Zero-G Stargazing Dome",
-      "description": "Float inside a transparent zero-gravity dome while gazing at the stars in unparalleled clarity.",
-      "price": 35
-    },
-    {
-      "id": "lunar-astro-photography",
-      "name": "Lunar Astro Photography",
-      "description": "Capture the stars, planets, and lunar surroundings with professional astro-imaging tools.",
-      "price": 30
     }
   ]
 }
