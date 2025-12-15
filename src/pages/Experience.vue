@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import data from '../data/experiences.json';
 import MarkdownIt from 'markdown-it';
+import { resolveImage } from '../utils/resolveImage';
 
 const props = defineProps<{
   id: string | number;
@@ -14,15 +15,13 @@ const experienceId = Number(props.id);
 
 const experience = computed(() => experiences.find((exp) => exp.id === experienceId));
 
+document.title = (experience.value?.title || 'Experience') + ' - Galactic Getaways';
+
 const renderedDescription = computed(() => {
   const exp = experience.value;
   if (!exp || !exp.description) return '';
   return md.render(exp.description.content);
 });
-
-function resolveImage(path: string) {
-  return new URL(`../assets/${path}`, import.meta.url).href;
-}
 </script>
 
 <template>
@@ -48,11 +47,14 @@ function resolveImage(path: string) {
         />
 
         <div class="flex gap-6 mt-10 justify-center">
-          <button
-            class="py-3 rounded-xl bg-[#5593f0] hover:bg-[#78aaff] transition font-semibold shadow-lg p-4"
-          >
-            Book Now
-          </button>
+          <router-link :to="`/booking/${experience.id}`">
+            <button
+              class="py-3 rounded-xl bg-[#5593f0] hover:bg-[#78aaff] transition font-semibold shadow-lg p-4"
+            >
+              Book Now
+            </button>
+          </router-link>
+
           <router-link :to="'/'">
             <button
               class="py-3 rounded-xl bg-[#313772] hover:bg-[#4b52a1] transition font-semibold shadow-lg p-4"

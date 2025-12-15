@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import ExperienceComponent from '../components/ExperienceComponent.vue';
-// import { onMounted, ref } from 'vue';
 import SearchBar from '../components/SearchBar.vue';
 import Slider from '../components/Slider.vue';
 import data from '../data/experiences.json';

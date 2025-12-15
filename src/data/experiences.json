@@ -9,8 +9,48 @@
       },
       "id": 1,
       "category": "Relaxation",
-      "age": "12",
-      "price": 199
+      "pricing": [
+        {
+          "label": "Teen",
+          "ageRange": "12–17",
+          "minAge": 12,
+          "maxAge": 17,
+          "price": 149
+        },
+        {
+          "label": "Adult",
+          "ageRange": "18–64",
+          "minAge": 18,
+          "maxAge": 64,
+          "price": 199
+        },
+        {
+          "label": "Senior",
+          "ageRange": "65+",
+          "minAge": 65,
+          "price": 169
+        }
+      ],
+      "addons": [
+        {
+          "id": "private-pod",
+          "name": "Private Thermal Pod",
+          "description": "Enjoy a secluded geothermal pod with panoramic views of Venus’ clouds.",
+          "price": 89
+        },
+        {
+          "id": "aroma-therapy",
+          "name": "Zero-G Aroma Therapy",
+          "description": "A personalized aroma session designed to enhance relaxation in low gravity.",
+          "price": 49
+        },
+        {
+          "id": "champagne-experience",
+          "name": "Atmospheric Champagne Experience",
+          "description": "Enjoy a glass of temperature-stabilized sparkling wine, infused with subtle mineral notes inspired by Venusian geology.",
+          "price": 30
+        }
+      ]
     },
     {
       "image": "mons-skiing.jpg",
@@ -21,8 +61,48 @@
       },
       "id": 2,
       "category": "Adventure",
-      "age": "16",
-      "price": 345
+      "pricing": [
+        {
+          "label": "Student",
+          "ageRange": "12–20",
+          "minAge": 12,
+          "maxAge": 17,
+          "price": 295
+        },
+        {
+          "label": "Adult",
+          "ageRange": "21–64",
+          "minAge": 21,
+          "maxAge": 64,
+          "price": 345
+        },
+        {
+          "label": "Senior",
+          "ageRange": "65+",
+          "minAge": 65,
+          "price": 315
+        }
+      ],
+      "addons": [
+        {
+          "id": "sauna-experience",
+          "name": "Low-Gravity Thermal Recovery Chamber",
+          "description": "Recover after your descent in a low-gravity thermal chamber, where heat circulation is optimized for Mars’ reduced gravity, allowing muscles to relax more deeply with less strain.",
+          "price": 70
+        },
+        {
+          "id": "holo-coach",
+          "name": "Holographic Ski Coach",
+          "description": "Real-time technique guidance from an AI instructor.",
+          "price": 79
+        },
+        {
+          "id": "summit-drop",
+          "name": "Summit Drop-Off",
+          "description": "Begin your descent closer to the volcano summit for a longer run.",
+          "price": 129
+        }
+      ]
     },
     {
       "image": "deep-sea-diving.png",
@@ -33,8 +113,48 @@
       },
       "id": 3,
       "category": "Exploration",
-      "age": "16",
-      "price": 249
+      "pricing": [
+        {
+          "label": "Student",
+          "ageRange": "16–19",
+          "minAge": 16,
+          "maxAge": 19,
+          "price": 199
+        },
+        {
+          "label": "Adult",
+          "ageRange": "20–64",
+          "minAge": 20,
+          "maxAge": 64,
+          "price": 249
+        },
+        {
+          "label": "Senior",
+          "ageRange": "65+",
+          "minAge": 65,
+          "price": 219
+        }
+      ],
+      "addons": [
+        {
+          "id": "dive-guide",
+          "name": "Cryo-Weightless Dive Guide",
+          "description": "Dive with a trained Enceladus specialist who guides you through the icy subglacial caverns, ensuring zero-gravity navigation is smooth and safe while highlighting alien bioluminescent life.",
+          "price": 119
+        },
+        {
+          "id": "observation-relaxation",
+          "name": "Subglacial Observation Dome Access",
+          "description": "Experience Enceladus’ oceans from inside a pressurized observation dome. Relax in heated comfort while observing alien sea life through transparent, reinforced panels.",
+          "price": 89
+        },
+        {
+          "id": "recording-package",
+          "name": "Bioluminescence Photography Package",
+          "description": "Capture your dive with a specialized camera that highlights the alien bioluminescent organisms, creating stunning souvenirs of your journey.",
+          "price": 29
+        }
+      ]
     },
     {
       "image": "balloon-riding.png",
@@ -45,8 +165,48 @@
       },
       "id": 4,
       "category": "Sightseeing",
-      "age": "12",
-      "price": 399
+      "pricing": [
+        {
+          "label": "Teen",
+          "ageRange": "12–17",
+          "minAge": 12,
+          "maxAge": 17,
+          "price": 299
+        },
+        {
+          "label": "Adult",
+          "ageRange": "18–64",
+          "minAge": 18,
+          "maxAge": 64,
+          "price": 399
+        },
+        {
+          "label": "Senior",
+          "ageRange": "65+",
+          "minAge": 65,
+          "price": 349
+        }
+      ],
+      "addons": [
+        {
+          "id": "sky-picnic",
+          "name": "Jovian Gourmet Sky Picnic",
+          "description": "Enjoy a luxury picnic basket mid-flight, featuring zero-gravity adapted delicacies and sparkling beverages. Each dish is engineered to retain flavor in high-altitude conditions above Jupiter’s atmosphere.",
+          "price": 39
+        },
+        {
+          "id": "aurora-photography",
+          "name": "Panoramic Aurora Photography",
+          "description": "Capture your journey with high-resolution cameras that automatically adjust for Jupiter’s intense lighting and aurora colors, producing breathtaking souvenirs of your cosmic flight.",
+          "price": 29
+        },
+        {
+          "id": "sky-guide",
+          "name": "Upper Atmosphere Science Guide",
+          "description": "Float with a specialized exo-atmospheric guide who narrates Jupiter’s colossal storms, auroras, and turbulent cloud bands. Learn about gas giant meteorology while floating safely above the clouds.",
+          "price": 59
+        }
+      ]
     },
     {
       "image": "crystal-cave.png",
@@ -57,8 +217,48 @@
       },
       "id": 5,
       "category": "Adventure",
-      "age": "12",
-      "price": 599
+      "pricing": [
+        {
+          "label": "Student",
+          "ageRange": "10-19",
+          "minAge": 10,
+          "maxAge": 19,
+          "price": 449
+        },
+        {
+          "label": "Adult",
+          "ageRange": "20–64",
+          "minAge": 20,
+          "maxAge": 64,
+          "price": 599
+        },
+        {
+          "label": "Senior",
+          "ageRange": "65+",
+          "minAge": 65,
+          "price": 529
+        }
+      ],
+      "addons": [
+        {
+          "id": "crystal-guide",
+          "name": "Alien Crystal Guide",
+          "description": "Traverse Europa’s crystal caves with a specialized guide highlighting alien luminescent formations.",
+          "price": 40
+        },
+        {
+          "id": "light-amplifier",
+          "name": "Crystal Light Amplifier",
+          "description": "Activate a personal crystal light amplifier to enhance Europa’s ice glows and reveal hidden patterns.",
+          "price": 35
+        },
+        {
+          "id": "photography-package",
+          "name": "Subglacial Photography Experience",
+          "description": "Capture the bioluminescent ice glows with enhanced cameras for vivid souvenirs.",
+          "price": 30
+        }
+      ]
     },
     {
       "image": "stargazing.png",
@@ -69,8 +269,55 @@
       },
       "id": 6,
       "category": "Relaxation",
-      "age": "0",
-      "price": 299
+      "pricing": [
+        {
+          "label": "Child",
+          "ageRange": "0–11",
+          "minAge": 0,
+          "maxAge": 11,
+          "price": 149
+        },
+        {
+          "label": "Teen",
+          "ageRange": "12–17",
+          "minAge": 12,
+          "maxAge": 17,
+          "price": 249
+        },
+        {
+          "label": "Adult",
+          "ageRange": "18–64",
+          "minAge": 18,
+          "maxAge": 64,
+          "price": 299
+        },
+        {
+          "label": "Senior",
+          "ageRange": "65+",
+          "minAge": 65,
+          "price": 269
+        }
+      ]
+    }
+  ],
+  "addons": [
+    {
+      "id": "orbital-telescope-guide",
+      "name": "Orbital Telescope Guide",
+      "description": "Join a lunar astronomer to explore the galaxy through enhanced orbital telescopes.",
+      "price": 40
+    },
+    {
+      "id": "zero-g-stargazing-dome",
+      "name": "Zero-G Stargazing Dome",
+      "description": "Float inside a transparent zero-gravity dome while gazing at the stars in unparalleled clarity.",
+      "price": 35
+    },
+    {
+      "id": "lunar-astro-photography",
+      "name": "Lunar Astro Photography",
+      "description": "Capture the stars, planets, and lunar surroundings with professional astro-imaging tools.",
+      "price": 30
     }
   ]
 }

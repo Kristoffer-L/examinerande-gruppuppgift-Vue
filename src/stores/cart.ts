@@ -6,9 +6,7 @@ export const useCartStore = defineStore('cart', {
     items: [] as {
       id: number;
       title: string;
-      description: string;
       image: string;
-      category: string;
       participants: number;
       price: number;
     }[],
@@ -16,6 +14,7 @@ export const useCartStore = defineStore('cart', {
 
   getters: {
     totalPrice: (state) => state.items.reduce((sum, item) => sum + item.price, 0),
+    itemCount: (state) => state.items.length,
   },
 
   actions: {

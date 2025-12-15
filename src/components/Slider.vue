@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { useCartStore } from '../stores/cart';
+import { resolveImage } from '../utils/resolveImage';
+
+interface PricingTier {
+  label: string;
+  ageRange: string;
+  minAge: number;
+  maxAge?: number;
+  price: number;
+}
 
 interface ExperienceItem {
   id: number;
   title: string;
-  description: string;
+  description: { type: string; content: string };
   image: string;
   category: string;
-  age: string;
-  price: number;
+  pricing: PricingTier[];
 }
 
 const props = defineProps<{
@@ -21,7 +29,6 @@ const emit = defineEmits<{
   (e: 'read-more', id: Number): void;
 }>();
 
-const cart = useCartStore();
 const currentIndex = ref<number>(0);
 
 const visibleItems = computed(() => {
@@ -48,14 +55,8 @@ function prev() {
   }
 }
 
-function resolveImage(path: string) {
-  return new URL(`../assets/${path}`, import.meta.url).href;
-}
-
-// Emit functions
 function onBook(item: ExperienceItem) {
   emit('book', item.id);
-  cart.addItem(item);
 }
 function onReadMore(item: ExperienceItem) {
   emit('read-more', item.id);
@@ -73,7 +74,9 @@ function onReadMore(item: ExperienceItem) {
         <h2 class="title">{{ item.title }}</h2>
 
         <div class="buttons">
-          <button class="action-btn" @click="onBook(item)">Book</button>
+          <router-link :to="`/booking/${item.id}`">
+            <button class="action-btn" @click="onBook(item)">Book</button>
+          </router-link>
           <router-link :to="`/experience/${item.id}`"
             ><button class="action-btn secondary">Read More</button></router-link
           >
@@ -143,6 +146,7 @@ function onReadMore(item: ExperienceItem) {
   font-weight: 600;
   font-size: large;
 }
+
 .action-btn:hover {
   background: #eee;
 }
@@ -150,6 +154,7 @@ function onReadMore(item: ExperienceItem) {
 .action-btn.secondary {
   background: 333;
 }
+
 .button {
   background: none;
   border: none;
@@ -157,6 +162,7 @@ function onReadMore(item: ExperienceItem) {
   cursor: pointer;
   color: #333;
 }
+
 .button:hover {
   color: #fff;
 }
