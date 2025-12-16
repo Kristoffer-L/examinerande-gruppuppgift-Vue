@@ -30,7 +30,9 @@ const submitForm = () => {
 
 <template>
   <div class="min-h-screen flex gap-4">
-    <div class="border-4 border-black w-[100%]">
+    <div
+      class="w-[100%] rounded-3xl bg-[#313772]/40 backdrop-blur-md shadow-xl ring-1 ring-white/10"
+    >
       <div class="border-b-2 border-black mx-4 pb-4">
         <h2>Contact</h2>
         <input
@@ -80,8 +82,7 @@ const submitForm = () => {
         </div>
       </div>
     </div>
-    <div class="border-4 border-black w-[500px] px-4 py-2">
-      <h2>Summary</h2>
+    <div class="w-[500px] px-4 py-2">
       <CartSummary />
       <div class="flex justify-center">
         <button
