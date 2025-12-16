@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import data from '../data/experiences.json';
 import MarkdownIt from 'markdown-it';
-import { resolveImage } from '../utils/resolveImage';
+import { resolveImage } from '../utils/helpers';
 
 const props = defineProps<{
   id: string | number;

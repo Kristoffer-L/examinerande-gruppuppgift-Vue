@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue';
 import data from '../data/experiences.json';
-import { resolveImage } from '../utils/resolveImage';
+import { resolveImage } from '../utils/helpers';
 import { VueDatePicker } from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import FormInput from '../components/FormInput.vue';

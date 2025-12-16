@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { useCartStore } from '../stores/cart';
-import { resolveImage } from '../utils/resolveImage';
+import { resolveImage } from '../utils/helpers';
 
 interface PricingTier {
   label: string;
