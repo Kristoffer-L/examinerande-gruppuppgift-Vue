@@ -1,70 +1,48 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { VueDatePicker } from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-
-const destination = ref<string>('');
-const category = ref<string>('');
-const participants = ref<number | null>(null);
-const ageCategory = ref<string>('');
-const selectedDateRange = ref<Date[] | null>(null);
+import type { SearchParams } from '../types/types';
+import { AGE_PRESETS, type AgePreset } from '../types/consts';
 
 const props = defineProps<{
+  modelValue: SearchParams;
   categories: string[];
-  events: {
-    id: number;
-    category: string;
-    participants: number;
-    ageCategory: number;
-    date: string; // ISO string
-  }[];
 }>();
+
+const searchTerms = computed({
+  get: () => props.modelValue,
+  set: (v) => emit('update:modelValue', v),
+});
 
 const emit = defineEmits<{
-  (e: 'filtered', value: typeof filteredExperiences.value): void;
+  (e: 'update:modelValue', value: SearchParams): void;
 }>();
 
-const filteredExperiences = ref<typeof props.events>([]);
-
-const handleDateChange = (newDates: Date[] | null): void => {
-  selectedDateRange.value = newDates;
+const clearSearch = () => {
+  searchTerms.value.category = '';
+  searchTerms.value.dateRange = null;
+  searchTerms.value.ageCategory = null;
 };
 
-const search = () => {
-  const payload = {
-    category: category.value,
-    ageCategory: ageCategory.value, // string like "12" or "16"
-    priceMin: null, // optional, if you want price filtering
-    priceMax: null,
-  };
+watch(
+  () => props.modelValue,
+  (v) => {
+    searchTerms.value = { ...v };
+  },
+  { deep: true },
+);
 
-  filteredExperiences.value = props.events.filter((exp) => {
-    // Convert string age to number
-    const expAgeNumber = Number(exp.age); // "12" -> 12
+watch(searchTerms, emit.bind(null, 'update:modelValue'), { deep: true });
 
-    // CATEGORY filter
-    if (payload.category && exp.category !== payload.category) {
-      return false;
-    }
-
-    // AGE filter
-    if (payload.ageCategory && expAgeNumber < Number(payload.ageCategory)) {
-      return false;
-    }
-
-    return true;
-  });
-
-  // Emit the filtered results to parent
-  emit('filtered', filteredExperiences.value);
-};
+const ageKeys = Object.keys(AGE_PRESETS) as AgePreset[];
 </script>
 
 <template>
   <div class="filter-container">
     <div class="field">
       <label for="category-input">Category</label>
-      <select id="category-input" v-model="category" class="input">
+      <select id="category-input" v-model="searchTerms.category" class="input">
         <option value="">Select Category</option>
         <option v-for="cat in categories" :value="cat">{{ cat }}</option>
       </select>
@@ -74,70 +52,99 @@ const search = () => {
       <label for="date-range-picker">Date</label>
       <VueDatePicker
         id="date-range-picker"
-        v-model="selectedDateRange"
+        v-model="searchTerms.dateRange"
         range
         :enable-time-picker="false"
         class="datepicker"
-        @update:model-value="handleDateChange"
       />
     </div>
 
     <div class="field">
-      <label for="Age-select">Age Category</label>
-      <select id="Age-select" v-model="ageCategory" class="input">
-        <option value="">All Ages</option>
-        <option value="12">12+</option>
-        <option value="16">16+</option>
+      <label for="Age-select">Participants</label>
+      <select id="Age-select" v-model="searchTerms.participants" class="input">
+        <option :value="null">Select participants</option>
+        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
     </div>
 
-    <button class="search-button" @click="search">Search</button>
+    <div class="field">
+      <label for="Age-select">Age Category</label>
+      <select id="Age-select" v-model="searchTerms.ageCategory" class="input">
+        <option v-for="age in ageKeys" :key="age" :value="age">{{ age }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <button @click="clearSearch" class="clear-button">Clear Filters</button>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .filter-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin: auto;
-  padding: 0.5rem 2rem;
-  width: 80%;
+  padding: 1rem 2rem;
+  width: 90%;
 }
 
 .field {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, rgba(25, 25, 40, 0.25), rgba(30, 30, 55, 0.25));
+  padding: 0.6rem 0.9rem;
+  border-radius: 18px;
+  min-width: 180px;
+}
+
+label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .input {
-  background-color: #313772;
-  border: 1px solid #444;
-  border-radius: 6px;
-  padding: 8px;
-  color: white;
+  background-color: #222430;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 10px 12px;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 6px 18px rgba(15, 18, 40, 0.35);
+}
+
+.input:focus {
+  box-shadow: 0 8px 22px rgba(25, 40, 120, 0.28);
+  border-color: rgba(85, 147, 240, 0.45);
 }
 
 .datepicker {
   width: 100%;
-  height: 80%;
-  font-size: 0.875rem;
-  --dp-background-color: #313772;
+  height: auto;
+  font-size: 0.9rem;
+  --dp-background-color: #2a2f54;
   --dp-text-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
-.search-button {
-  padding: 12px 32px;
-  margin: auto 0;
-  background-color: #5593f0;
-  border-radius: 10px;
+.clear-button {
+  padding: 10px 18px;
+  align-self: center;
+  background: #333;
+  border-radius: 20px;
   border: none;
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15, 18, 40, 0.35);
 }
 
-.search-button:hover {
-  background-color: #6aa1f3;
+.clear-button:hover {
+  background: #eee;
+  color: #111;
 }
 </style>

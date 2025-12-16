@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { useCartStore } from '../stores/cart';
-import { resolveImage } from '../utils/resolveImage';
+import { resolveImage } from '../utils/helpers';
 
 interface PricingTier {
   label: string;
@@ -25,8 +25,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: 'book', id: Number): void;
-  (e: 'read-more', id: Number): void;
+  (e: 'book', id: number): void;
+  (e: 'read-more', id: number): void;
 }>();
 
 const currentIndex = ref<number>(0);
@@ -72,14 +72,10 @@ function onReadMore(item: ExperienceItem) {
 
       <div class="overlay">
         <h2 class="title">{{ item.title }}</h2>
-
         <div class="buttons">
-          <router-link :to="`/booking/${item.id}`">
-            <button class="action-btn" @click="onBook(item)">Book</button>
-          </router-link>
-          <router-link :to="`/experience/${item.id}`"
-            ><button class="action-btn secondary">Read More</button></router-link
-          >
+          <button class="action-btn" @click="onBook(item)">Book</button>
+
+          <button class="action-btn secondary" @click="onReadMore(item)">Read More</button>
         </div>
       </div>
     </div>
