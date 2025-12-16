@@ -5,16 +5,15 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import type { SearchParams } from '../types/types';
 import { AGE_PRESETS, type AgePreset } from '../types/consts';
 
-const searchTerms = ref<SearchParams>({
-  category: '',
-  dateRange: null,
-  ageCategory: null,
-});
-
 const props = defineProps<{
   modelValue: SearchParams;
   categories: string[];
 }>();
+
+const searchTerms = computed({
+  get: () => props.modelValue,
+  set: (v) => emit('update:modelValue', v),
+});
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: SearchParams): void;
@@ -25,6 +24,14 @@ const clearSearch = () => {
   searchTerms.value.dateRange = null;
   searchTerms.value.ageCategory = null;
 };
+
+watch(
+  () => props.modelValue,
+  (v) => {
+    searchTerms.value = { ...v };
+  },
+  { deep: true },
+);
 
 watch(searchTerms, emit.bind(null, 'update:modelValue'), { deep: true });
 
@@ -53,6 +60,14 @@ const ageKeys = Object.keys(AGE_PRESETS) as AgePreset[];
     </div>
 
     <div class="field">
+      <label for="Age-select">Participants</label>
+      <select id="Age-select" v-model="searchTerms.participants" class="input">
+        <option :value="null">Select participants</option>
+        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+      </select>
+    </div>
+
+    <div class="field">
       <label for="Age-select">Age Category</label>
       <select id="Age-select" v-model="searchTerms.ageCategory" class="input">
         <option v-for="age in ageKeys" :key="age" :value="age">{{ age }}</option>
@@ -68,7 +83,7 @@ const ageKeys = Object.keys(AGE_PRESETS) as AgePreset[];
 <style scoped>
 .filter-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   margin: auto;

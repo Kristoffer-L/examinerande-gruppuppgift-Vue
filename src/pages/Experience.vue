@@ -3,6 +3,10 @@ import { computed } from 'vue';
 import data from '../data/experiences.json';
 import MarkdownIt from 'markdown-it';
 import { resolveImage } from '../utils/helpers';
+import { useRouter, useRoute } from 'vue-router';
+
+const router = useRouter();
+const route = useRoute();
 
 const props = defineProps<{
   id: string | number;
@@ -22,6 +26,15 @@ const renderedDescription = computed(() => {
   if (!exp || !exp.description) return '';
   return md.render(exp.description.content);
 });
+
+function onBook() {
+  const exp = experience.value;
+  router.push({
+    name: 'booking',
+    params: { id: exp?.id },
+    query: route.query,
+  });
+}
 </script>
 
 <template>
@@ -47,13 +60,12 @@ const renderedDescription = computed(() => {
         />
 
         <div class="flex gap-6 mt-10 justify-center">
-          <router-link :to="`/booking/${experience.id}`">
-            <button
-              class="py-3 rounded-xl bg-[#5593f0] hover:bg-[#78aaff] transition font-semibold shadow-lg p-4"
-            >
-              Book Now
-            </button>
-          </router-link>
+          <button
+            class="py-3 rounded-xl bg-[#5593f0] hover:bg-[#78aaff] transition font-semibold shadow-lg p-4"
+            @click="onBook"
+          >
+            Book Now
+          </button>
 
           <router-link :to="'/'">
             <button

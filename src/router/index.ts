@@ -24,6 +24,7 @@ const router = createRouter({
         {
           path: 'booking/:id',
           component: Booking,
+          name: 'booking',
           props: true,
           beforeEnter: (to) => {
             const id = Number(to.params.id);
@@ -39,6 +40,7 @@ const router = createRouter({
         {
           path: 'experience/:id',
           component: Experience,
+          name: 'experience',
           props: true,
           beforeEnter: (to) => {
             const id = Number(to.params.id);
