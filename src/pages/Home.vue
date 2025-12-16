@@ -3,6 +3,9 @@ import { ref, computed, watch, onMounted } from 'vue';
 import SearchBar from '../components/SearchBar.vue';
 import Slider from '../components/Slider.vue';
 import data from '../data/experiences.json';
+
+import ArticleComponent from '../components/ArticleComponent.vue';
+
 import type { SearchParams } from '../types/types';
 import { experienceSupportsAge } from '../utils/helpers';
 import { AGE_PRESETS, type AgePreset } from '../types/consts';
@@ -110,6 +113,7 @@ function onReadMore(id: number) {
 
 <template>
   <div class="min-h-screen p-8">
+    <ArticleComponent />
     <SearchBar :categories="categories" v-model="searchParams" />
     <Slider :items="filteredExperiences" @book="onBook" @read-more="onReadMore" />
   </div>
