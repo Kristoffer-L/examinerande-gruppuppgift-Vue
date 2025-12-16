@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import SearchBar from '../components/SearchBar.vue';
 import Slider from '../components/Slider.vue';
 import data from '../data/experiences.json';
+import ArticleComponent from '../components/ArticleComponent.vue';
 const experiences = data.experiences;
 document.title = 'Galactic Getaways - Home';
 
@@ -21,5 +22,6 @@ const filteredExperiences = ref(experiences);
     />
 
     <Slider :items="filteredExperiences" />
+    <ArticleComponent />
   </div>
 </template>
