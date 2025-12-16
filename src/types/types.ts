@@ -4,6 +4,7 @@ export interface SearchParams {
   category: string | null;
   ageCategory: AgePreset | null;
   dateRange: Date[] | null;
+  participants: number | null;
 }
 
 export interface PricingTier {

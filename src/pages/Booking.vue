@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import data from '../data/experiences.json';
 import { resolveImage } from '../utils/helpers';
 import { VueDatePicker } from '@vuepic/vue-datepicker';
@@ -7,6 +7,9 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import FormInput from '../components/FormInput.vue';
 import { Route } from 'lucide-vue-next';
 import { useCartStore } from '../stores/cart';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const cart = useCartStore();
 
@@ -26,6 +29,18 @@ document.title = (experience.value?.title || 'Experience') + ' - Galactic Getawa
 
 const selectedDateRange = ref<Date[] | null>(null);
 const participants = ref<Record<number, number>>({});
+
+onMounted(() => {
+  const { start, end, participants: participantsAmount } = route.query;
+
+  if (start && end) {
+    selectedDateRange.value = [new Date(start as string), new Date(end as string)];
+  }
+  if (participantsAmount) {
+    const totalParticipants = parseInt(participantsAmount as string, 10);
+    participants.value[1] = totalParticipants;
+  }
+});
 
 const handleDateChange = (newDates: Date[] | null): void => {
   selectedDateRange.value = newDates;
@@ -55,15 +70,6 @@ function onSubmit() {
   }, 0);
 
   const total = participantsTotal + addonsTotal;
-
-  console.log({
-    experienceId: experience.value?.id,
-    experienceTitle: experience.value?.title,
-    dateRange: selectedDateRange.value,
-    participants: participants.value,
-    addons: Array.from(selectedAddons.value),
-    total,
-  });
 
   cart.addItem({
     id: experience.value?.id ?? 0,
