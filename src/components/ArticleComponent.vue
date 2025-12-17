@@ -8,8 +8,8 @@ function resolveImage(path: string) {
 </script>
 
 <template>
-  <div class="md:grid md:grid-cols-2 md:gap-8">
-    <div v-for="(item, index) in articles" :key="index" class="w-[80%] mx-auto my-10 md:w-[100%]">
+  <div class="md:grid md:grid-cols-2 md:gap-8 pb-[250px]">
+    <div v-for="(item, index) in articles" :key="index" class="w-[80%] mx-auto py-10 md:w-[100%]">
       <div class="relative group pb-10 md:pb-0">
         <img
           :src="resolveImage(item.image)"
