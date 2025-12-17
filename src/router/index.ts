@@ -52,6 +52,7 @@ const router = createRouter({
         {
           path: 'thank-you',
           component: ThankYou,
+          name: 'thank-you',
         },
       ],
     },
