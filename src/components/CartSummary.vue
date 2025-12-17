@@ -19,7 +19,7 @@ function resolveImage(path: string) {
       <div class="flex">
         <img :src="resolveImage(item.image)" :alt="item.title" class="h-auto w-[33%] rounded-lg" />
 
-        <div class="mt-3 flex items-center justify-between">
+        <div class="mt-3 ml-2 flex items-center justify-between w-full">
           <div class="flex items-center gap-2">
             <button
               type="button"
@@ -36,7 +36,7 @@ function resolveImage(path: string) {
               @click="cart.addOnePerson(index)"
               class="h-9 w-9 rounded-xl bg-black/80 hover:bg-black flex items-center justify-center border border-black"
               aria-label="Add a person"
-              title="Add a person"
+              title="Add a person to booking"
             >
               <Plus class="h-5 w-5 text-green-300" />
             </button>
@@ -54,13 +54,20 @@ function resolveImage(path: string) {
           </button>
         </div>
       </div>
+
       <h2 class="font-bold text-lg my-auto">{{ item.title }}</h2>
-      <div class="flex justify-between mb-6">
-        <div class="flex">
-          <Users />
-          <span>{{ item.participants }}</span>
+      <div class="flex justify-between items-end mt-3 mb-4">
+        <div class="flex items-center gap-2">
+          <Users class="h-5 w-5 opacity-90" />
+          <div class="leading-tight">
+            <p class="text-lg font-bold">{{ item.participants }}</p>
+          </div>
         </div>
-        <span>price: {{ item.price }} kr</span>
+
+        <div class="text-right leading-tight">
+          <p class="text-xs uppercase tracking-wide text-white/70">Price per person</p>
+          <p class="text-lg font-bold">{{ item.price }} kr</p>
+        </div>
       </div>
     </div>
     <button
