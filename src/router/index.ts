@@ -8,6 +8,7 @@ import Home from '../pages/Home.vue';
 import Booking from '../pages/Booking.vue';
 import Basket from '../pages/Basket.vue';
 import Experience from '../pages/Experience.vue';
+import ThankYou from '../pages/ThankYou.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -47,6 +48,10 @@ const router = createRouter({
             if (Number.isNaN(id)) return '/';
             return true;
           },
+        },
+        {
+          path: 'thank-you',
+          component: ThankYou,
         },
       ],
     },
