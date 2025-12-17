@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useCartStore } from '../stores/cart';
+import { useRouter } from 'vue-router';
 
 defineProps<{ modelValue: boolean }>();
 
@@ -8,6 +9,7 @@ const emit = defineEmits<{
 }>();
 
 const cart = useCartStore();
+const router = useRouter();
 
 function resolveImage(path: string) {
   return new URL(`../assets/${path}`, import.meta.url).href;
@@ -15,6 +17,12 @@ function resolveImage(path: string) {
 
 function closeModal() {
   emit('update:modelValue', false);
+}
+
+function confirmPurchase() {
+  emit('update:modelValue', false);
+  cart.clearCart();
+  router.push('/thank-you');
 }
 </script>
 
@@ -26,8 +34,11 @@ function closeModal() {
       <div
         class="w-full max-w-md rounded-3xl border-2 border-black bg-[#313772] p-6 text-white shadow-2xl"
       >
-        <h2 class="text-2xl font-bold mb-1">Payment Complete!</h2>
-        <p class="opacity-90 mb-4">Thank you for your purchase. Here is your order summary:</p>
+        <h2 class="text-2xl font-bold mb-1">Confirm Purchase</h2>
+        <p class="opacity-90 mb-4">
+          Please check so the order is correct before completing payment. Here is your order
+          summary:
+        </p>
 
         <div class="rounded-2xl border border-black/40 bg-black/20 p-3 max-h-64 overflow-auto">
           <div v-if="cart.items.length === 0" class="opacity-80">Your cart is empty.</div>
@@ -71,32 +82,19 @@ function closeModal() {
             @click="closeModal"
             class="flex-1 rounded-2xl bg-black/70 hover:bg-black border border-white/10 px-4 py-3 font-semibold transition active:scale-[0.98]"
           >
-            OK
+            Cancel
           </button>
+
           <button
             type="button"
-            @click="
-              cart.clearCart();
-              closeModal();
-            "
-            class="flex-1 rounded-2xl bg-green-600 hover:bg-green-500 border border-black px-4 py-3 font-semibold transition active:scale-[0.98]"
+            :disabled="cart.items.length === 0"
+            @click="confirmPurchase"
+            class="flex-1 rounded-2xl bg-green-600 hover:bg-green-500 disabled:opacity-50 disabled:cursor-not-allowed border border-black px-4 py-3 font-semibold transition active:scale-[0.98]"
           >
-            Pay and clear cart
+            Confirm & Pay
           </button>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<!-- <div class="bg-[#313772] rounded-2xl shadow-xl p-8 w-96 text-center">
-      <div class="flex justify-center mb-4"></div>
-      <h2 class="text-2xl font-semibold mb-2">Payment Complete!</h2>
-      <p class="mb-6">Thank you for your purchase. Your transaction was successful.</p>
-      <button
-        @click="closeModal"
-        class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition"
-      >
-        OK
-      </button>
-    </div> -->
