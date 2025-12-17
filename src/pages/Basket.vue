@@ -29,7 +29,7 @@ const submitForm = () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex gap-4 items-start pt-12">
+  <div class="min-h-screen flex gap-4 items-start pt-2 relative">
     <div
       class="w-[100%] h-[500px] mt-2 rounded-3xl bg-[#313772]/40 backdrop-blur-md shadow-xl ring-1 ring-black/10"
     >
@@ -97,7 +97,14 @@ const submitForm = () => {
         >
           Submit
         </button>
-        <ConfirmModal v-model="showModal" />
+        <ConfirmModal
+          v-model="showModal"
+          :email="email"
+          :first-name="firstName"
+          :last-name="lastName"
+          :city="city"
+          :postal-code="postalCode"
+        />
       </div>
     </div>
   </div>
