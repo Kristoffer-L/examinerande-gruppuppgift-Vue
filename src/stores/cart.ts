@@ -1,15 +1,17 @@
 // /src/stores/cart.ts
 import { defineStore } from 'pinia';
 
+interface CartItem {
+  id: number;
+  title: string;
+  image: string;
+  participants: number;
+  price: number;
+}
+
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    items: JSON.parse(localStorage.getItem('exp') || '[]') as {
-      id: number;
-      title: string;
-      image: string;
-      participants: number;
-      price: number;
-    }[],
+    items: JSON.parse(localStorage.getItem('exp') || '[]') as CartItem[],
   }),
 
   getters: {
@@ -19,7 +21,7 @@ export const useCartStore = defineStore('cart', {
   },
 
   actions: {
-    addItem(item: any) {
+    addItem(item: CartItem) {
       this.items.push(item);
       const stored = JSON.parse(localStorage.getItem('exp') || '[]');
       stored.push(item);
