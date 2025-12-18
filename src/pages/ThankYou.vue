@@ -6,7 +6,10 @@
       class="w-full max-w-md rounded-3xl bg-[#313772]/70 backdrop-blur-md p-6 shadow-2xl ring-1 ring-white/10 text-center"
     >
       <h1 class="text-2xl font-bold mb-2">Thanks for the purchase!</h1>
-      <p class="opacity-90 mb-6">Your payment is complete and your booking is confirmed.</p>
+      <p class="opacity-90 mb-6">
+        Your payment is complete and your booking is confirmed. Please check your email for the
+        confirmation.
+      </p>
 
       <RouterLink
         to="/"
