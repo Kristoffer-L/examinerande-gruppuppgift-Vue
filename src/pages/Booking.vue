@@ -91,8 +91,12 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="min-h-screen p-8 grid grid-cols-2 gap-10 justify-items-center grid-cols-[2fr,1fr]">
-    <div class="w-full">
+  <div
+    class="min-h-screen p-8 grid grid-cols-2 gap-10 justify-items-center items-start grid-cols-[2fr,1fr]"
+  >
+    <div
+      class="w-full rounded-3xl bg-[#313772]/40 backdrop-blur-md shadow-xl ring-1 ring-white/10 p-6"
+    >
       <h1 class="text-2xl font-bold mb-4">{{ experience?.title }}</h1>
       <form class="flex flex-col gap-4" @submit.prevent="onSubmit">
         <VueDatePicker
@@ -102,6 +106,7 @@ watchEffect(() => {
           :enable-time-picker="false"
           class="datepicker w-[50%]"
           @update:model-value="handleDateChange"
+          placeholder="Select date here"
         />
         <div
           v-for="(tier, index) in experience?.pricing"
@@ -142,7 +147,10 @@ watchEffect(() => {
         >
           Confirm Booking
         </button>
-        <RouterLink to="/" class="flex items-center gap-2 text-gray-600 hover:text-gray-800 mt-2">
+        <RouterLink
+          to="/"
+          class="mt-3 inline-flex w-fit items-center gap-2 rounded-2xl bg-black/80 hover:bg-black text-white border border-black px-4 py-3 font-semibold transition active:scale-[0.98]"
+        >
           <Route class="w-4 h-4" />
           <span>Back to Home</span>
         </RouterLink>

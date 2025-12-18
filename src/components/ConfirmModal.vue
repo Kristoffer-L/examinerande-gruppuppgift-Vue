@@ -2,7 +2,14 @@
 import { useCartStore } from '../stores/cart';
 import { useRouter } from 'vue-router';
 
-defineProps<{ modelValue: boolean }>();
+const props = defineProps<{
+  modelValue: boolean;
+  email: string;
+  firstName: string;
+  lastName: string;
+  city: string;
+  postalCode: string;
+}>();
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void;
@@ -27,7 +34,7 @@ function confirmPurchase() {
 </script>
 
 <template>
-  <div v-if="modelValue" class="fixed inset-0 z-50">
+  <div v-if="props.modelValue" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-[#0b102e]/70 backdrop-blur-sm" @click="closeModal"></div>
 
     <div class="relative flex min-h-full items-center justify-center p-4">
@@ -39,6 +46,27 @@ function confirmPurchase() {
           Please check so the order is correct before completing payment. Here is your order
           summary:
         </p>
+
+        <div class="rounded-2xl border border-black/40 bg-black/20 p-3 mb-4">
+          <p class="text-sm font-semibold text-white/90 mb-2">Customer details</p>
+
+          <div class="text-sm text-white/90 space-y-1">
+            <p>
+              <span class="text-white/70">Name: </span>
+              <span class="font-semibold"> {{ props.firstName }} {{ props.lastName }} </span>
+            </p>
+
+            <p>
+              <span class="text-white/70">Email: </span>
+              <span class="font-semibold"> {{ props.email }} </span>
+            </p>
+
+            <p>
+              <span class="text-white/70">Address: </span>
+              <span class="font-semibold"> {{ props.city }}, {{ props.postalCode }} </span>
+            </p>
+          </div>
+        </div>
 
         <div class="rounded-2xl border border-black/40 bg-black/20 p-3 max-h-64 overflow-auto">
           <div v-if="cart.items.length === 0" class="opacity-80">Your cart is empty.</div>

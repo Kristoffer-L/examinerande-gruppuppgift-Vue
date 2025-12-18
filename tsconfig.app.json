@@ -3,6 +3,9 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "types": ["vite/client"],
+    "module": "ESNext",
+    "target": "ES2020",
+    "moduleResolution": "Bundler",
 
     /* Linting */
     "strict": true,
